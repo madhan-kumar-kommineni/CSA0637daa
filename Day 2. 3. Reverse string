@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+void reverseString(char str[]) {
+    if (str[0] == '\0') 
+return;
+    else {
+        reverseString(&str[1]); 
+        printf("%c", str[0]); 
+    }
+}
+
+int main() {
+    char str[] = "Hello, world!";
+    printf("Original string: %s\n", str);
+    printf("Reversed string: ");
+    reverseString(str);
+    return 0;
+}
