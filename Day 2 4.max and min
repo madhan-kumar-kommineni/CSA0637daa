@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+void findMinMax(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        int min = arr[i];
+        int max = arr[i];
+        
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < min) {
+                min = arr[j];
+            }
+            if (arr[j] > max) {
+                max = arr[j];
+            }
+        }
+        
+        printf("For number %d, minimum value is %d and maximum value is %d\n", arr[i], min, max);
+    }
+}
+
+int main() {
+    int arr[] = {4, 7, 2, 9, 1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    
+    findMinMax(arr, n);
+    
+    return 0;
+}
