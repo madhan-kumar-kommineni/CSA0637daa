@@ -1,0 +1,19 @@
+#include <stdio.h>
+#define MAX_CONTAINERS 100
+int main() {
+    int containers[MAX_CONTAINERS], n, capacity, used = 0, remaining;
+    printf("Enter the number of containers and capacity: ");
+    scanf("%d %d", &n, &capacity);
+
+    printf("Enter sizes of containers:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &containers[i]);
+        if (containers[i] <= capacity) {
+            used++;
+            capacity -= containers[i];
+        }
+    }
+    remaining = capacity;
+    printf("Used containers: %d\nRemaining capacity: %d\n", used, remaining);
+    return 0;
+}
