@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <limits.h>
+#define N 4 
+void printAssignment(int assignment[N]) {
+    printf("Worker  Job\n");
+    for (int i = 0; i < N; i++)
+        printf("  %d\t   %d\n", i + 1, assignment[i] + 1);
+}
+void branchAndBound(int cost[N][N], int assigned[N], int totalCost, int worker) {
+    if (worker == N) {
+        printAssignment(assigned);
+        printf("Minimum Cost = %d\n", totalCost);
+        return;
+    }
+    int minCost = INT_MAX;
+    for (int j = 0; j < N; j++) {
+        if (!assigned[j] && cost[worker][j] < minCost) {
+            assigned[j] = 1;
+            branchAndBound(cost, assigned, totalCost + cost[worker][j], worker + 1);
+            assigned[j] = 0;
+        }
+    }
+}
+int main() {
+    int cost[N][N] = {
+        {9, 2, 7, 8},
+        {6, 4, 3, 7},
+        {5, 8, 1, 8},
+        {7, 6, 9, 4}
+    };
+    int assigned[N] = {0};
+    branchAndBound(cost, assigned, 0, 0);
+    return 0;
+}
